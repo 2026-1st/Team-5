@@ -1,0 +1,39 @@
+[이가연 주제]
+
+https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset
+IBM HR Analytics Employee Attrition & Performance 데이터
+
+직원 이직 위험 예측과 핵심 요인 규명: IBM HR Analytics Employee Attrition & Performance 데이터 기반 지도학습 비교 연구
+
+문제 정의: 
+직원의 인구통계적 특성, 근무 환경, 보상 수준, 직무 만족도, 워라밸, 경력 정보를 바탕으로 이직 여부(Attrition) 를 예측하고, 
+이직 가능성을 높이는 주요 요인을 설명 가능한 방식으로 식별한다.
+
+
+데이터 특징:
+
+행/열: 약 1,470개 행, 35개 변수 
+
+장점: 결측치(Missing Value)가 거의 없고, 변수들이 '나이', '결혼 여부', '부서', '직무 만족도(1~4점)' 등으로 수치화/범주화되어 있음
+
+1. 시각화 (8개 그래프)
+
+타깃 분포 막대그래프: 이직 여부 불균형 확인.
+상관관계 heatmap: 수치형 변수 간 관계와 후보 요인 탐색.
+부서별 이직률 countplot: 조직 구조 관점.
+월수입 boxplot by Attrition: 보상 영향 분석.
+Job Satisfaction bar plot: 심리적 만족도와 이직 관계.
+OverTime vs Attrition countplot: 과로/업무강도 요인.
+Feature importance top 10: 모델 기반 핵심 변수.
+ROC curve + confusion matrix: 성능 평가와 임계값 해석.
+
+2. 모델링 및 실험
+알고리즘 1 (Logistic Regression): 가장 기본적인 선형 모델로 베이스라인 설정.
+알고리즘 2 (Random Forest): 변수 중요도를 뽑아내기
+(Deep Learning): TensorFlow나 PyTorch를 사용해 간단한 MLP(Multi-Layer Perceptron) 구조로 이진 분류 구현
+
+Baseline: Logistic Regression
+Tree model: Random Forest
+선택 가산점: MLP 또는 XGBoost 중 1개 추가
+평가지표: Accuracy, F1-score, ROC-AUC
+설명방법: Feature importance, permutation importance, 또는 SHAP 중 1개
