@@ -1,0 +1,35 @@
+# 원시 데이터 (용량 크고 민감 — 절대 커밋 금지)
+data/raw/
+*.sas7bdat
+*.zip
+
+# 전처리 완료 데이터 (재현 가능하므로 선택적 제외)
+data/processed/
+
+# Jupyter 체크포인트
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Python 캐시
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# 가상환경
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 보고서 PDF (용량 클 수 있음 — 필요 시 주석 해제)
+# reports/report.pdf
