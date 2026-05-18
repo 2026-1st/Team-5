@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Large data files
+data/
+*.sas7bdat
+*.zip
+*.xlsx
+
+# Generated outputs
+figures/
