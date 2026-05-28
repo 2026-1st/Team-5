@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import json; nb=json.load\\(open\\('Team5_KNHANES2022_Project.ipynb'\\)\\); cells=nb['cells']; [print\\(f'[{i}] {c[\\\\\"cell_type\\\\\"]}: {str\\(c[\\\\\"source\\\\\"]\\)[:150]}'\\) for i,c in enumerate\\(cells\\)]\")",
+      "Bash(python -c ' *)",
+      "Bash(python -c \"import sys; data=sys.stdin.buffer.read\\(\\); print\\(data.decode\\('utf-8', errors='replace'\\)\\)\")",
+      "Bash(python _inject_focal_mlp.py)"
+    ]
+  }
+}
