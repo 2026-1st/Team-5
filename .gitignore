@@ -2,9 +2,10 @@
 __pycache__/
 *.pyc
 
-# Large data files
+# Raw data files
 data/
 *.sas7bdat
+*.sas7bat
 *.zip
 *.xlsx
 
