@@ -22,6 +22,7 @@
 Team-5/
 ├── README.md
 ├── Team5_KNHANES2022_Project.ipynb
+├── *.sas7bdat
 ├── figures/
 │   ├── 01_target_dist.png
 │   ├── 02_continuous.png
@@ -42,24 +43,35 @@ Team-5/
 | 파일/폴더 | 설명 |
 |---|---|
 | `Team5_KNHANES2022_Project.ipynb` | 데이터 불러오기, 전처리, EDA, 모델 학습, 성능 비교, 해석 과정을 포함한 최종 Jupyter Notebook |
+| `*.sas7bdat` | 노트북 실행에 필요한 KNHANES 2022 SAS 데이터 파일. 노트북 파일과 같은 위치에 둡니다. |
 | `figures/` | EDA 및 모델 평가 과정에서 생성된 주요 시각화 결과물 |
 | `docs/meetings/` | 프로젝트 회의 및 발표 관련 문서 |
 | `.vscode/settings.json` | Conda 기반 Python 환경 사용을 위한 VS Code 설정 |
-| `.gitignore` | 대용량 원시 데이터, 생성 산출물, Python 캐시 파일 제외 설정 |
+| `.gitignore` | Python 캐시 파일, 압축 파일, Excel 파일 등 불필요한 파일 제외 설정 |
 
 ## 데이터 안내
 
-본 프로젝트는 KNHANES 2022 원시자료 중 이미 하나의 파일로 병합된 단일 데이터셋을 사용합니다. 데이터 파일은 용량과 배포 제한을 고려하여 저장소에 포함하지 않았습니다.
-
-실행 시 다음과 같이 로컬 환경에 데이터 파일을 준비해야 합니다.
+본 프로젝트는 KNHANES 2022 원시자료 중 SAS 형식의 `.sas7bdat` 데이터 파일을 사용합니다. 교수자 또는 평가자가 저장소를 내려받은 뒤 바로 노트북을 실행할 수 있도록, 데이터 파일은 **`Team5_KNHANES2022_Project.ipynb`와 같은 위치**에 두는 것을 기준으로 합니다.
 
 ```text
 Team-5/
-└── data/
-    └── KNHANES_2022_merged.csv 또는 분석에 사용하는 병합 데이터 파일
+├── Team5_KNHANES2022_Project.ipynb
+└── KNHANES 2022 데이터 파일.sas7bdat
 ```
 
-노트북 내부의 `file_path` 값을 실제 데이터 파일 경로에 맞게 수정한 뒤 실행하면 됩니다.
+노트북 내부의 `file_path`는 같은 폴더에 있는 `.sas7bdat` 파일을 가리키도록 설정합니다. 예시는 다음과 같습니다.
+
+```python
+file_path = "HN22_ALL.sas7bdat"  # 실제 파일명에 맞게 수정
+```
+
+SAS 데이터 파일을 읽기 위해서는 Pandas의 `read_sas`를 사용합니다.
+
+```python
+df = pd.read_sas(file_path, format="sas7bdat", encoding="cp949")
+```
+
+파일명이 다를 경우, 노트북 상단의 `file_path` 값만 실제 파일명으로 수정하면 됩니다.
 
 ## 분석 대상 및 변수 구성
 
@@ -76,7 +88,7 @@ PHQ-9 총점 기반 우울 위험군 여부를 이진 분류 타깃으로 사용
 ## 분석 흐름
 
 1. **데이터 불러오기**
-   - KNHANES 2022 병합 데이터 로드
+   - KNHANES 2022 SAS 데이터 로드
    - 데이터 크기 및 주요 변수 확인
 
 2. **타깃 변수 생성**
@@ -146,18 +158,20 @@ conda activate team5-knhanes
 ### 3. 필요한 패키지 설치
 
 ```bash
-pip install numpy pandas matplotlib scikit-learn torch scipy shap jupyter
+pip install numpy pandas matplotlib scikit-learn torch scipy shap jupyter pyreadstat
 ```
 
-### 4. 데이터 파일 준비
+### 4. 데이터 파일 확인
 
-`data/` 폴더를 생성한 뒤, KNHANES 2022 병합 데이터 파일을 넣습니다.
+`.sas7bdat` 데이터 파일이 노트북과 같은 위치에 있는지 확인합니다.
 
-```bash
-mkdir data
+```text
+Team-5/
+├── Team5_KNHANES2022_Project.ipynb
+└── HN22_ALL.sas7bdat
 ```
 
-이후 노트북의 `file_path` 값을 실제 파일명에 맞게 수정합니다.
+파일명이 다르다면 노트북의 `file_path` 값을 실제 파일명으로 수정합니다.
 
 ### 5. Jupyter Notebook 실행
 
