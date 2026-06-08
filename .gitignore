@@ -4,9 +4,12 @@ __pycache__/
 
 # Large data files
 data/
-*.sas7bdat
 *.zip
 *.xlsx
+
+# SAS dataset required to run the notebook
+# Keep the project SAS data file at the same level as the notebook.
+!HN22_ALL.sas7bdat
 
 # Generated outputs
 figures/
