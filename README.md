@@ -22,7 +22,6 @@
 Team-5/
 ├── README.md
 ├── Team5_KNHANES2022_Project.ipynb
-├── *.sas7bdat
 ├── figures/
 │   ├── 01_target_dist.png
 │   ├── 02_continuous.png
@@ -43,35 +42,33 @@ Team-5/
 | 파일/폴더 | 설명 |
 |---|---|
 | `Team5_KNHANES2022_Project.ipynb` | 데이터 불러오기, 전처리, EDA, 모델 학습, 성능 비교, 해석 과정을 포함한 최종 Jupyter Notebook |
-| `*.sas7bdat` | 노트북 실행에 필요한 KNHANES 2022 SAS 데이터 파일. 노트북 파일과 같은 위치에 둡니다. |
 | `figures/` | EDA 및 모델 평가 과정에서 생성된 주요 시각화 결과물 |
 | `docs/meetings/` | 프로젝트 회의 및 발표 관련 문서 |
 | `.vscode/settings.json` | Conda 기반 Python 환경 사용을 위한 VS Code 설정 |
-| `.gitignore` | Python 캐시 파일, 압축 파일, Excel 파일 등 불필요한 파일 제외 설정 |
+| `.gitignore` | Python 캐시, 원시자료, 압축 파일, Excel 파일, 생성 산출물 등 제외 설정 |
 
 ## 데이터 안내
 
-본 프로젝트는 KNHANES 2022 원시자료 중 SAS 형식의 `.sas7bdat` 데이터 파일을 사용합니다. 교수자 또는 평가자가 저장소를 내려받은 뒤 바로 노트북을 실행할 수 있도록, 데이터 파일은 **`Team5_KNHANES2022_Project.ipynb`와 같은 위치**에 두는 것을 기준으로 합니다.
+본 프로젝트는 국민건강영양조사(KNHANES) 제9기 1차년도(2022년) 원시자료를 사용합니다.
+
+다만 KNHANES 원시자료 이용지침에 따라 자료의 무단 공유ㆍ복제 및 사전에 명시한 목적 외 재활용이 금지되어 있으므로, 본 저장소에는 원시자료 파일을 포함하지 않습니다.
+
+원시자료는 **질병관리청 국민건강영양조사 홈페이지에서 별도 신청 후 다운로드**하십시오.
+
+다운로드한 `.sas7bdat` 데이터 파일은 `Team5_KNHANES2022_Project.ipynb`와 같은 위치에 배치한 뒤 실행하면 됩니다.
 
 ```text
 Team-5/
 ├── Team5_KNHANES2022_Project.ipynb
-└── KNHANES 2022 데이터 파일.sas7bdat
+└── hn22_all.sas7bdat
 ```
 
-노트북 내부의 `file_path`는 같은 폴더에 있는 `.sas7bdat` 파일을 가리키도록 설정합니다. 예시는 다음과 같습니다.
+파일명이 다를 경우, 노트북 상단의 `file_path` 값을 실제 파일명에 맞게 수정해야 합니다.
 
 ```python
-file_path = "HN22_ALL.sas7bdat"  # 실제 파일명에 맞게 수정
-```
-
-SAS 데이터 파일을 읽기 위해서는 Pandas의 `read_sas`를 사용합니다.
-
-```python
+file_path = "hn22_all.sas7bdat"
 df = pd.read_sas(file_path, format="sas7bdat", encoding="cp949")
 ```
-
-파일명이 다를 경우, 노트북 상단의 `file_path` 값만 실제 파일명으로 수정하면 됩니다.
 
 ## 분석 대상 및 변수 구성
 
@@ -161,14 +158,16 @@ conda activate team5-knhanes
 pip install numpy pandas matplotlib scikit-learn torch scipy shap jupyter pyreadstat
 ```
 
-### 4. 데이터 파일 확인
+### 4. 데이터 파일 준비
 
-`.sas7bdat` 데이터 파일이 노트북과 같은 위치에 있는지 확인합니다.
+KNHANES 원시자료는 저장소에 포함되어 있지 않습니다. 질병관리청 국민건강영양조사 홈페이지에서 원시자료 이용 신청 후 데이터를 다운로드합니다.
+
+다운로드한 `.sas7bdat` 파일을 노트북과 같은 위치에 둡니다.
 
 ```text
 Team-5/
 ├── Team5_KNHANES2022_Project.ipynb
-└── HN22_ALL.sas7bdat
+└── hn22_all.sas7bdat
 ```
 
 파일명이 다르다면 노트북의 `file_path` 값을 실제 파일명으로 수정합니다.
