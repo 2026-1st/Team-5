@@ -2,7 +2,7 @@
 
 ## 프로젝트 개요
 
-본 프로젝트는 국민건강영양조사(KNHANES) 제8기 4차년도 2022년 자료를 사용해 수면시간, 청각 문제, 소음 노출 관련 자기보고 지표가 **PHQ8 기준 우울 위험군 선별 가능성**에 어떤 정보를 제공하는지 탐색한다.
+본 프로젝트는 국민건강영양조사(KNHANES) 제9기 1차년도 2022년 자료를 사용해 수면시간, 청각 문제, 소음 노출 관련 자기보고 지표가 **PHQ8 기준 우울 위험군 선별 가능성**에 어떤 정보를 제공하는지 탐색한다.
 
 PHQ-9/PHQ8은 임상적 확정 진단도구가 아니라 자가보고식 우울 증상 선별도구다. 따라서 본 분석의 타깃인 PHQ8 기준 우울 위험군도 임상적 진단군이 아니라 연구용 선별 기준이다. 모델 출력은 전문적 진단이나 상담 이전 단계에서 추가 평가가 필요할 수 있는 위험 신호를 넓게 포착하기 위한 탐색적 결과로 해석해야 한다.
 
@@ -33,10 +33,14 @@ Team-5/
 |   |-- 12_confusion_matrix_best_model.png
 |   |-- 13_feature_importance.png
 |   |-- 14_shap_summary_rf_validation.png
+|   |-- 14b_shap_original_variable_rf_validation.png
+|   |-- 14c_shap_sleep_direction_rf_validation.png
 |   |-- 15_overfitting_check.png
 |-- outputs/
+|   |-- default_threshold_validation_results.csv
 |   |-- model_comparison_test_results.csv
 |   |-- model_comparison_screening_test_results.csv
+|   |-- validation_screening_thresholds.csv
 |   |-- validation_selected_thresholds.csv
 |   |-- validation_threshold_grid_results.csv
 |   |-- overfitting_check.csv
@@ -100,7 +104,7 @@ df = pd.read_sas(file_path, format="sas7bdat", encoding="cp949")
 - validation: threshold 선택에만 사용
 - test: validation에서 선택된 threshold를 고정한 뒤 최종 평가에만 사용
 
-현재 notebook은 64% train, 16% validation, 20% test 구조를 사용한다. 전처리는 split 이후 pipeline 내부에서 학습되어 validation/test 정보가 train 과정에 유입되지 않도록 구성했다.
+현재 notebook은 64% train, 16% validation, 20% test 구조를 사용한다. 현재 실행 기준 split 크기는 train 3,100명, validation 776명, test 970명이다. 전처리는 split 이후 pipeline 내부에서 학습되어 validation/test 정보가 train 과정에 유입되지 않도록 구성했다.
 
 ## 모델 및 평가
 
@@ -119,7 +123,7 @@ F2-score는 Precision보다 Recall에 더 큰 가중치를 두므로, 조기 선
 
 ## SHAP 해석 기준
 
-Notebook의 SHAP 분석은 Random Forest 기준이다. 이는 최종 threshold 적용 모델 자체를 직접 설명하기 위한 분석이 아니라, 수면·청각·소음 관련 변수가 비선형 모델에서 PHQ8 기준 우울 위험군 분류에 어떤 방식으로 기여하는지 탐색하기 위한 보조 분석이다.
+Notebook의 SHAP 분석은 Random Forest 기준이다. 현재 SHAP 값은 validation set 776명을 전처리한 `776 × 22` encoded feature matrix 기준으로 계산된다. 이는 최종 threshold 적용 모델 자체를 직접 설명하기 위한 분석이 아니라, 수면·청각·소음 관련 변수가 비선형 모델에서 PHQ8 기준 우울 위험군 분류에 어떤 방식으로 기여하는지 탐색하기 위한 보조 분석이다.
 
 최종 선별 모델의 해석은 validation 기반 threshold 선택 결과와 최종 모델 기준 permutation importance를 중심으로 본다. Random Forest SHAP 결과는 최종 모델 해석을 보완하는 비선형 탐색 결과로만 라벨링하며, 인과관계로 해석하지 않는다.
 
