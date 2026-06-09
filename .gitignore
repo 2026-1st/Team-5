@@ -1,6 +1,7 @@
 # Python cache
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
 
 # Raw data files
 data/
@@ -9,5 +10,10 @@ data/
 *.zip
 *.xlsx
 
-# Generated outputs
-figures/
+# Local secrets / credentials
+.env
+*.key
+*token*
+*credential*
+
+# figures/ and outputs/ contain reproducibility artifacts and may be committed.
