@@ -1,15 +1,19 @@
 # Python cache
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
 
-# Large data files
+# Raw data files
 data/
+*.sas7bdat
+*.sas7bat
 *.zip
 *.xlsx
 
-# SAS dataset required to run the notebook
-# Keep the project SAS data file at the same level as the notebook.
-!HN22_ALL.sas7bdat
+# Local secrets / credentials
+.env
+*.key
+*token*
+*credential*
 
-# Generated outputs
-figures/
+# figures/ and outputs/ contain reproducibility artifacts and may be committed.

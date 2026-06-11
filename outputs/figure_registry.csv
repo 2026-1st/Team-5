@@ -1,0 +1,15 @@
+﻿filename,path,title
+01_target_dist.png,figures\01_target_dist.png,Target distribution
+02_continuous.png,figures\02_continuous.png,Continuous feature distributions
+03_categorical.png,figures\03_categorical.png,Categorical feature distributions
+04_correlation.png,figures\04_correlation.png,Correlation heatmap
+05_missing.png,figures\05_missing.png,Missingness summary
+06_validation_f2_confusion_matrix.png,figures\06_validation_f2_confusion_matrix.png,"Confusion Matrix 비교 - validation F2 기준 threshold, test 평가"
+07_validation_screening_confusion_matrix.png,figures\07_validation_screening_confusion_matrix.png,"Confusion Matrix 비교 - validation Recall 0.80 조기 선별 기준, test 평가"
+08_roc_pr_curves.png,figures\08_roc_pr_curves.png,ROC and PR curves on test set
+12_confusion_matrix_best_model.png,figures\12_confusion_matrix_best_model.png,Final selected model confusion matrices
+15_overfitting_check.png,figures\15_overfitting_check.png,Overfitting check
+13_feature_importance.png,figures\13_feature_importance.png,Permutation importance on validation set
+14_shap_summary_rf_validation.png,figures\14_shap_summary_rf_validation.png,Random Forest SHAP summary on validation set
+14b_shap_original_variable_rf_validation.png,figures\14b_shap_original_variable_rf_validation.png,Random Forest SHAP importance by original variable
+14c_shap_sleep_direction_rf_validation.png,figures\14c_shap_sleep_direction_rf_validation.png,Random Forest SHAP sleep feature direction
